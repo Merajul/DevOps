@@ -1,0 +1,107 @@
+# docker pull centos
+# docker run -t -d --name centos  centos
+# docker run -dit --name docker1 -p 27000:80 httpd
+# docker run -it --name nickola nicolaka/netshoot
+# docker run --name postgres -e POSTGRES_PASSWORD=TimeSpace5060# -d -p 5432:5432 postgres
+# docker run --net mynet -d -p 9200:9200 -v esvol:/usr/share/elasticsearch/data --name elasticsearch -e "discovery.type=single-node" elasticsearch:7.9.2
+# docker run --name --rm parcelkoi -v  parcelkoivol:/usr/src/app --net mynet -p 3000:3000 -e "MONGODB_HOST=172.19.0.3" -e "elesticHost=172.19.0.4" parcelkoi
+# docker run --net mynet -p -d 27017:27017 -v mongovol:/data/db --name mongodb mongo
+# docker ps -a ///hidden ps show
+# docker exec -it centos bash
+# docker run -t -d -p 80:80 --name nginx nginx
+# sudo docker top containerid
+# docker kill ContainerID
+# docker export --output="mydockerfile" [dockerfile]
+# docker import /home/[fiename]
+
+------docker status-----
+#docker stats
+
+# docker stop nginx or continer ID
+# docker stats nginx Or Continer ID
+# docker rm -f nginx or Continer ID
+# docker pause Continer ID
+# docker history ImageID 
+
+-----docker Images ------
+
+Docker file create then 
+
+# docker run -it --mount "type=bind,source=$(pwd),target=/src" hn bash  [NB Docker image file update Container file   copy file ]
+
+# docker build -t [image name] .
+# docker images
+# docker rmi nginx (Delete all dependent continers to remove image)
+# docker run nginx
+# docker run ubuntu sleep 5
+docker run image 
+-----------------
+# docker exec ubuntu cat /etc/hosts
+
+------RUN--Volume Mapping------------
+
+# docker run -v /home/datadir:/var/lib/mysql mysql
+
+-------Docker INSPACT------
+
+#docker inspect nginx
+#docker inspect (continer first two digit) 15
+#docker logs nginx
+
+
+-----------------docker Networking---------------
+#sudo docker network ls
+--network create-----
+# docker network create nw_1
+# docker network inspect nw_1
+# docker network connect nw_1 cont_02
+# docker exec -it cont_01 ping 8.8.8.8
+	
+---------------------docker Volume----------
+#docker volume ls
+
+-------------------docker compose--------------
+
+https://github.com/foyzulkarim/parcelkoi/blob/master/app/docker-compose.yml
+
+# docker compose up
+# docker-compose exec backend sh
+# docker compose down
+------------------DOCKER hUB push image and image create--------------------
+# sudo docker commit continer id image name [NB image update ]
+# sudo docker images
+# docker login
+# docker push imagename
+
+
+--------------------------docker swarm----------manage docker continer--------------------
+# docker info [ Swarm Active or Deactive check]
+# docker swarm init --advertise-addr 27.147.156.154
+# docker service create --name Apache2 --mode global -d -p 8003:80 httpd
+# docker service ls
+# docker network create -d overlay [network name]
+ OR
+# docker network create -d overlay –-attachable my_net
+# docker service create --name webapp1 -d --network my_net -p 8001:80 hshar/webapp
+# docker service create --name mysql -d --network mynet -p 3306:3306 hshar/mysql:5.5 
+# 
+# docker node ls
+# docker service ps servicename
+# docker container ls
+
+----swarm leave---
+
+# docker swarm leave [NB: non manager]
+# docker swarm leave --force [NB: Manager] 
+
+	----service scale up----
+
+
+# docker service scale dock_Sevice=5
+# docker service update [name] --replicas 5
+# docker service ls
+# docker service ps [name]
+# docker service update [name] --replicas 3
+# docker service rm [name]
+
+
