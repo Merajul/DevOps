@@ -1,0 +1,41 @@
+without password login master to slave over ssh
+
+example:
+ master : 192.168.224.11
+ slave1 : 192.168.224.12
+ slave1 : 192.168.224.13
+
+
+# vi /etc/ansible/hosts
+
+[production]
+slave1 ansible_ssh_host=192.168.224.12
+slave2 ansible_ssh_host=192.168.224.13
+
+# ansible -m ping all
+
+create play book....
+
+################### play.yaml ######################
+---
+ - hosts:slave1
+   name:play1
+   sudo:yes
+   tasks:
+    - name: install nginx
+      apt: name=nginx state=latest
+
+  - hosts:slave2
+   name:play2
+   sudo:yes
+   tasks:
+    - name: install Apache
+      apt: name=apache2 state=latest
+    - name: Adding website
+      script: hello.sh
+##########################################
+
+# ansible-playbook play.yaml
+
+
+
