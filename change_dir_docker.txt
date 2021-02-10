@@ -1,7 +1,0 @@
-https://unix.stackexchange.com/questions/452368/change-docker-root-dir-on-red-hat-linux
-
-# mv /var/lib/docker /data/
-
-# ln -s /data/docker /var/lib/docker
-
-# systemctl daemon-reload
